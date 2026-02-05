@@ -2,6 +2,10 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 const pool = require('./config/db');
+const authRoutes = require('./routes/auth.routes');
+const imcRoutes = require('./routes/imc.routes');
+
+
 
 const app = express();
 
@@ -28,4 +32,7 @@ app.listen(PORT, () => {
 });
 const usuarioRoutes = require('./routes/usuario.routes');
 app.use('/api/usuarios', usuarioRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/imc', imcRoutes);
+
 
