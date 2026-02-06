@@ -35,5 +35,6 @@ app.use('/api/usuarios', usuarioRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/imc', imcRoutes);
 app.use('/api/suscripciones', require('./routes/suscripcion.routes'));
+app.use('/api/rutinas', require('./routes/rutinas.routes'));
 
 
