@@ -34,5 +34,6 @@ const usuarioRoutes = require('./routes/usuario.routes');
 app.use('/api/usuarios', usuarioRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/imc', imcRoutes);
+app.use('/api/suscripciones', require('./routes/suscripcion.routes'));
 
 
