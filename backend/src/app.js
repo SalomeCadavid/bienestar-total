@@ -1,11 +1,13 @@
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
+
 const pool = require('./config/db');
+
 const authRoutes = require('./routes/auth.routes');
 const imcRoutes = require('./routes/imc.routes');
-
-
+const usuarioRoutes = require('./routes/usuario.routes');
+const carritoRoutes = require('./routes/carrito.routes');
 
 const app = express();
 
@@ -16,6 +18,7 @@ app.get('/', (req, res) => {
   res.json({ message: 'API Bienestar Total funcionando 🚀' });
 });
 
+// Probar conexión a MySQL
 (async () => {
   try {
     const connection = await pool.getConnection();
@@ -26,15 +29,18 @@ app.get('/', (req, res) => {
   }
 })();
 
+// Rutas
+app.use('/api/auth', authRoutes);
+app.use('/api/usuarios', usuarioRoutes);
+app.use('/api/imc', imcRoutes);
+app.use('/api/suscripciones', require('./routes/suscripcion.routes'));
+app.use('/api/rutinas', require('./routes/rutinas.routes'));
+app.use('/api/productos', require('./routes/producto.routes'));
+app.use('/api/carrito', carritoRoutes);
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en puerto ${PORT}`);
 });
-const usuarioRoutes = require('./routes/usuario.routes');
-app.use('/api/usuarios', usuarioRoutes);
-app.use('/api/auth', authRoutes);
-app.use('/api/imc', imcRoutes);
-app.use('/api/suscripciones', require('./routes/suscripcion.routes'));
-app.use('/api/rutinas', require('./routes/rutinas.routes'));
 
 
