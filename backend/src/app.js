@@ -1,3 +1,4 @@
+const compraRoutes = require('./routes/compra.routes');
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
@@ -30,6 +31,7 @@ app.get('/', (req, res) => {
 })();
 
 // Rutas
+app.use('/api/compras', compraRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/usuarios', usuarioRoutes);
 app.use('/api/imc', imcRoutes);
